@@ -34,17 +34,14 @@ public class Stra_NoteDaoImpl implements Stra_NoteDao {
         try {
             statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT StrategyID FROM strategy WHERE Status = '"+ Status +"'");
-
+            Strategy strategy = null;
+            strategyList = new ArrayList<>();
             while (resultSet.next()){
                 String StrategyID = resultSet.getString("StrategyID");
-                Strategy strategy = new Strategy();
 
                 strategy = new Stra_NoteDaoImpl().getStrategy(StrategyID, Status);
-
-                strategyList = new ArrayList<>();
                 strategyList.add(strategy);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -70,13 +67,12 @@ public class Stra_NoteDaoImpl implements Stra_NoteDao {
             statement = conn.createStatement();
 
             ResultSet resultSet = statement.executeQuery("SELECT NoteID FROM travelnote WHERE Status = '"+ Status +"'");
+            travleNoteList = new ArrayList<>();
             while (resultSet.next()){
                 String NoteID = resultSet.getString("NoteID");
                 TravleNote travleNote = new TravleNote();
 
                 travleNote = new Stra_NoteDaoImpl().getTravleNote(NoteID, Status);
-
-                travleNoteList = new ArrayList<>();
                 travleNoteList.add(travleNote);
             }
 
