@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by rick- on 2017/5/3.
@@ -93,11 +94,11 @@ public class ForumDaoImpl implements ForumDao {
         Connection conn = DBUtil.getConn();
         Statement statement = null;
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-
+        String ForumID = UUID.randomUUID().toString();
 
         try {
             statement = conn.createStatement();
-            statement.executeUpdate("INSERT INTO forum VALUES ('"+ forum.getUserID() +"', '"+ forum.getForumID() +"', '"+ forum.getTextContent() +"', '"+ df.format(new Date()) +"', '"+ forum.getCityName() +"', '"+ forum.getFeatureName() +"', '0')");
+            statement.executeUpdate("INSERT INTO forum VALUES ('"+ forum.getUserID() +"', '"+ ForumID +"', '"+ forum.getTextContent() +"', '"+ df.format(new Date()) +"', '"+ forum.getCityName() +"', '"+ forum.getFeatureName() +"', '0')");
             is_success = true;
         } catch (SQLException e) {
             e.printStackTrace();
