@@ -1,5 +1,6 @@
 package com.skyteam.letu.server;
 
+import com.skyteam.letu.entities.Forum;
 import com.skyteam.letu.entities.Strategy;
 import com.skyteam.letu.entities.TravleNote;
 import com.skyteam.letu.entities.User;
@@ -35,6 +36,26 @@ public interface UserManage {
      * @return
      */
     public User setUser(String UserTel, String Password, String meid);
+
+    /**
+     * 获取指定用户攻略内容列表
+     * @param UserID （状态码 0代表编辑中 1代表已完成 2代表已发布）
+     * @return 返回List<Strategy>
+     */
+    public List<Strategy> getStrategyList(String UserID);
+
+    /**
+     * 获取指定用户游记内容列表
+     * @param UserID （状态码 0代表编辑中 1代表已完成 2代表已发布）
+     * @return 返回List<TravleNote>
+     */
+    public List<TravleNote> getTravleNoteList(String UserID);
+
+    /**
+     * 获取指定用户论坛动态列表
+     * @return
+     */
+    public List<Forum> getForumList(String UserID);
 
     /**
      * 获取用户关注的人的列表
