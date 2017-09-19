@@ -16,6 +16,12 @@ public interface ForumDao {
     public List<Forum> getForumList();
 
     /**
+     * 获取指定用户论坛动态列表
+     * @return
+     */
+    public List<Forum> getForumList(String UserID);
+
+    /**
      * 获取单个动态信息
      * @param ForumID
      * @return

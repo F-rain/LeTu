@@ -48,6 +48,36 @@ public class ForumDaoImpl implements ForumDao {
     }
 
     /**
+     * 获取指定用户论坛动态列表
+     *
+     * @param UserID
+     * @return
+     */
+    @Override
+    public List<Forum> getForumList(String UserID) {
+        List<Forum> forumList = null;
+
+        Connection conn = DBUtil.getConn();
+        Statement statement = null;
+        try {
+            statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT ForumID FROM forum WHERE UserID = '"+ UserID +"'");
+            forumList = new ArrayList<>();
+            while (resultSet.next()){
+                Forum forum = getForum(resultSet.getString("ForumID"));
+                forumList.add(forum);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.closeConn(conn, statement);
+        }
+
+        return forumList;
+    }
+
+    /**
      * 获取单个动态信息
      *
      * @param ForumID

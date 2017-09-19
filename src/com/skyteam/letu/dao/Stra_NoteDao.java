@@ -18,11 +18,32 @@ public interface Stra_NoteDao {
     public List<Strategy> getStrategyList(int Status);
 
     /**
+     * 获取指定用户攻略内容列表
+     * @param UserID （状态码 0代表编辑中 1代表已完成 2代表已发布）
+     * @return 返回List<Strategy>
+     */
+    public List<Strategy> getStrategyList(String UserID);
+
+    /**
      * 获取游记内容列表
      * @param Status （状态码 0代表编辑中 1代表已完成 2代表已发布）
      * @return 返回List<TravleNote>
      */
     public List<TravleNote> getTravleNoteList(int Status);
+
+    /**
+     * 获取指定用户游记内容列表
+     * @param UserID （状态码 0代表编辑中 1代表已完成 2代表已发布）
+     * @return 返回List<TravleNote>
+     */
+    public List<TravleNote> getTravleNoteList(String UserID);
+
+    /**
+     * 获取单个攻略内容
+     * @param StrategyID（攻略ID）
+     * @return 返回Strategy对象
+     */
+    public Strategy getStrategy(String StrategyID);
 
     /**
      * 获取单个攻略内容
@@ -31,6 +52,13 @@ public interface Stra_NoteDao {
      * @return 返回Strategy对象
      */
     public Strategy getStrategy(String StrategyID, int Status);
+
+    /**
+     * 获取单个游记内容
+     * @param NoteID（游记ID）
+     * @return 返回TravleNote对象
+     */
+    public TravleNote getTravleNote(String NoteID);
 
     /**
      * 获取单个游记内容

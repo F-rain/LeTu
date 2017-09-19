@@ -53,6 +53,40 @@ public class Stra_NoteDaoImpl implements Stra_NoteDao {
     }
 
     /**
+     * 获取指定用户攻略内容列表
+     *
+     * @param UserID （状态码 0代表编辑中 1代表已完成 2代表已发布）
+     * @return 返回List<Strategy>
+     */
+    @Override
+    public List<Strategy> getStrategyList(String UserID) {
+        List<Strategy> strategyList = null;
+
+        Connection conn = DBUtil.getConn();
+        Statement statement = null;
+
+        try {
+            statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT StrategyID FROM strategy WHERE UserID = '"+ UserID +"'");
+            Strategy strategy = null;
+            strategyList = new ArrayList<>();
+            while (resultSet.next()){
+                String StrategyID = resultSet.getString("StrategyID");
+
+                strategy = new Stra_NoteDaoImpl().getStrategy(StrategyID);
+                strategyList.add(strategy);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.closeConn(conn, statement);
+        }
+
+        return strategyList;
+    }
+
+    /**
      * 获取游记内容列表
      * @param Status （状态码 0代表编辑中 1代表已完成 2代表已发布）
      * @return 返回List<TravleNote>
@@ -70,9 +104,7 @@ public class Stra_NoteDaoImpl implements Stra_NoteDao {
             travleNoteList = new ArrayList<>();
             while (resultSet.next()){
                 String NoteID = resultSet.getString("NoteID");
-                TravleNote travleNote = new TravleNote();
-
-                travleNote = new Stra_NoteDaoImpl().getTravleNote(NoteID, Status);
+                TravleNote travleNote = new Stra_NoteDaoImpl().getTravleNote(NoteID, Status);
                 travleNoteList.add(travleNote);
             }
 
@@ -84,6 +116,76 @@ public class Stra_NoteDaoImpl implements Stra_NoteDao {
         }
 
         return travleNoteList;
+    }
+
+    /**
+     * 获取指定用户游记内容列表
+     *
+     * @param UserID （状态码 0代表编辑中 1代表已完成 2代表已发布）
+     * @return 返回List<TravleNote>
+     */
+    @Override
+    public List<TravleNote> getTravleNoteList(String UserID) {
+        List<TravleNote> travleNoteList = null;
+
+        Connection conn = DBUtil.getConn();
+        Statement statement = null;
+        try {
+            statement = conn.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("SELECT NoteID FROM travelnote WHERE UserID = '"+ UserID +"'");
+            travleNoteList = new ArrayList<>();
+            while (resultSet.next()){
+                String NoteID = resultSet.getString("NoteID");
+                TravleNote travleNote = new Stra_NoteDaoImpl().getTravleNote(NoteID);
+                travleNoteList.add(travleNote);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.closeConn(conn, statement);
+        }
+
+        return travleNoteList;
+    }
+
+    /**
+     * 获取单个攻略内容
+     *
+     * @param StrategyID （攻略ID）
+     * @return 返回Strategy对象
+     */
+    @Override
+    public Strategy getStrategy(String StrategyID) {
+        Strategy strategy = null;
+
+        Connection conn = DBUtil.getConn();
+        Statement statement = null;
+        try {
+            statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM strategy WHERE StrategyID = '"+ StrategyID +"'");
+
+            resultSet.next();
+            strategy = new Strategy();
+            strategy.setUserID(resultSet.getString("UserID"));
+            strategy.setStrategyId(StrategyID);
+            strategy.setTextContent(resultSet.getString("TextContent"));
+            strategy.setStrategyTime(resultSet.getString("StrategyTime"));
+            strategy.setCityName(resultSet.getString("CityName"));
+            strategy.setFeatureName(resultSet.getString("FeatureName"));
+            strategy.setLikeNum(resultSet.getString("LikeNum"));
+            strategy.setStatus(resultSet.getInt("Status"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.closeConn(conn, statement);
+        }
+
+        return strategy;
     }
 
     /**
@@ -122,6 +224,43 @@ public class Stra_NoteDaoImpl implements Stra_NoteDao {
         }
 
         return strategy;
+    }
+
+    /**
+     * 获取单个游记内容
+     *
+     * @param NoteID （游记ID）
+     * @return 返回TravleNote对象
+     */
+    @Override
+    public TravleNote getTravleNote(String NoteID) {
+        TravleNote travleNote = null;
+
+        Connection conn = DBUtil.getConn();
+        Statement statement = null;
+        try {
+            statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM travelnote WHERE NoteID = '"+ NoteID +"'");
+
+            resultSet.next();
+            travleNote = new TravleNote();
+            travleNote.setUserID(resultSet.getString("UserID"));
+            travleNote.setNodeID(NoteID);
+            travleNote.setTextContent(resultSet.getString("TextContent"));
+            travleNote.setNoteTime(resultSet.getString("NoteTime"));
+            travleNote.setCityName(resultSet.getString("CityName"));
+            travleNote.setFeatureName(resultSet.getString("FeatureName"));
+            travleNote.setLikeNum(resultSet.getString("LikeNum"));
+            travleNote.setStatus(resultSet.getInt("Status"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBUtil.closeConn(conn, statement);
+        }
+
+        return travleNote;
     }
 
     /**
