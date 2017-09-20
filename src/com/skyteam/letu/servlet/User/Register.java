@@ -22,7 +22,7 @@ public class Register extends HttpServlet {
         String UserTel = request.getParameter("UserTel");
         String Password = request.getParameter("Password");
         String meid = request.getParameter("meid");
-        if (null != UserTel && null != meid){
+        if (null != UserTel && null != meid && null != Password){
             user = new UserManageImpl().setUser(UserTel, Password, meid);
         }
 
