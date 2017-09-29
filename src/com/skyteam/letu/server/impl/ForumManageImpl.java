@@ -45,7 +45,7 @@ public class ForumManageImpl implements ForumManage {
      * @return
      */
     @Override
-    public boolean setForum(Forum forum) {
+    public String setForum(Forum forum) {
         return forumDao.setForum(forum);
     }
 

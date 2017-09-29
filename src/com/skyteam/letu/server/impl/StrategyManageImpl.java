@@ -45,7 +45,7 @@ public class StrategyManageImpl implements StrategyManage {
      * @return 返回一个布尔值
      */
     @Override
-    public boolean setStrategy(Strategy strategy, int Status) {
+    public String setStrategy(Strategy strategy, int Status) {
         return stra_noteDao.setStrategy(strategy, Status);
     }
 

@@ -12,25 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 发送一条论坛动态
+ * 发送一条论坛动态(废弃)
  * Created by rick- on 2017/6/22.
  */
 @WebServlet(name = "setForum", value = "/setForum")
 public class setForum extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Forum forum = null;
-        boolean is_success = false;
-
-        if (request.getParameter("Forum") != null){
-            forum = new Gson().fromJson(request.getParameter("Forum"), Forum.class);
-
-            is_success = new ForumManageImpl().setForum(forum);
-        }
-
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("TEXT/JSON");
-
-        response.getWriter().write(Boolean.toString(is_success));
+//        Forum forum = null;
+//        boolean is_success = false;
+//
+//        if (request.getParameter("Forum") != null){
+//            forum = new Gson().fromJson(request.getParameter("Forum"), Forum.class);
+//
+//            is_success = new ForumManageImpl().setForum(forum);
+//        }
+//
+//        response.setCharacterEncoding("UTF-8");
+//        response.setContentType("TEXT/JSON");
+//
+//        response.getWriter().write(Boolean.toString(is_success));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -28,7 +28,7 @@ public interface ForumManage {
      * @param forum
      * @return
      */
-    public boolean setForum(Forum forum);
+    public String setForum(Forum forum);
 
     /**
      * 删除该用户的一条动态

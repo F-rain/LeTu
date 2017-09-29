@@ -33,7 +33,7 @@ public interface ForumDao {
      * @param forum
      * @return
      */
-    public boolean setForum(Forum forum);
+    public String setForum(Forum forum);
 
     /**
      * 删除一条动态

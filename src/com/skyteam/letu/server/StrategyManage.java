@@ -31,7 +31,7 @@ public interface StrategyManage {
      * @param Status （状态码 0代表编辑中 1代表已完成 2代表已发布）
      * @return 返回一个布尔值
      */
-    public boolean setStrategy(Strategy strategy, int Status);
+    public String setStrategy(Strategy strategy, int Status);
 
     /**
      * 发布一个攻略

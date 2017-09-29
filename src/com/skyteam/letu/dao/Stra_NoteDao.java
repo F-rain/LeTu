@@ -72,17 +72,17 @@ public interface Stra_NoteDao {
      * 添加攻略内容
      * @param strategy（攻略对象）
      * @param Status （状态码 0代表编辑中 1代表已完成 2代表已发布）
-     * @return 返回一个布尔值
+     * @return 返回攻略ID
      */
-    public boolean setStrategy(Strategy strategy, int Status);
+    public String setStrategy(Strategy strategy, int Status);
 
     /**
      * 添加游记内容
      * @param travleNote（游记对象）
      * @param Status （状态码 0代表编辑中 1代表已完成 2代表已发布）
-     * @return 返回一个布尔值
+     * @return 返回游记ID
      */
-    public boolean setTravleNote(TravleNote travleNote, int Status);
+    public String setTravleNote(TravleNote travleNote, int Status);
 
     /**
      * 发布一个攻略

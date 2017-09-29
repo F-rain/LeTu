@@ -16,7 +16,7 @@ public class DBUtil {
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection("jdbc:mysql://118.89.236.245:2418/letu", "frain", "FRAIN!0251515971zm");
+            conn = DriverManager.getConnection("jdbc:mysql://118.89.236.245:2418/letu?useUnicode=true&characterEncoding=utf-8&useSSL=false", "frain", "FRAIN!0251515971zm");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

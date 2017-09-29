@@ -19,17 +19,17 @@ import java.io.IOException;
 public class setStrategy extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Strategy strategy = null;
-        boolean is_success = false;
+        String ID = null;
         if (request.getParameter("Strategy") != null && request.getParameter("Status") != null){
             strategy = new Gson().fromJson(request.getParameter("Strategy"), Strategy.class);
 
-            is_success = new StrategyManageImpl().setStrategy(strategy, Integer.parseInt(request.getParameter("Status")));
+            ID = new StrategyManageImpl().setStrategy(strategy, Integer.parseInt(request.getParameter("Status")));
         }
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("TEXT/JSON");
 
-        response.getWriter().write(Boolean.toString(is_success));
+        response.getWriter().write(ID);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

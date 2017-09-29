@@ -306,10 +306,10 @@ public class Stra_NoteDaoImpl implements Stra_NoteDao {
      *
      * @param strategy （攻略对象）
      * @param Status （状态码 0代表编辑中 1代表已完成 2代表已发布）
-     * @return 返回一个布尔值
+     * @return 返回攻略ID
      */
     @Override
-    public boolean setStrategy(Strategy strategy, int Status) {
+    public String setStrategy(Strategy strategy, int Status) {
         boolean is_success = false;
         String StrategyID = UUID.randomUUID().toString();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -326,8 +326,7 @@ public class Stra_NoteDaoImpl implements Stra_NoteDao {
         finally {
             DBUtil.closeConn(conn, statement);
         }
-
-        return is_success;
+        return StrategyID;
     }
 
     /**
@@ -335,10 +334,10 @@ public class Stra_NoteDaoImpl implements Stra_NoteDao {
      *
      * @param travleNote （游记对象）
      * @param Status （状态码 0代表编辑中 1代表已完成 2代表已发布）
-     * @return 返回一个布尔值
+     * @return 返回游记ID
      */
     @Override
-    public boolean setTravleNote(TravleNote travleNote, int Status) {
+    public String setTravleNote(TravleNote travleNote, int Status) {
         boolean is_success = false;
         String NoteID = UUID.randomUUID().toString();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -356,7 +355,7 @@ public class Stra_NoteDaoImpl implements Stra_NoteDao {
             DBUtil.closeConn(conn, statement);
         }
 
-        return is_success;
+        return NoteID;
     }
 
     /**

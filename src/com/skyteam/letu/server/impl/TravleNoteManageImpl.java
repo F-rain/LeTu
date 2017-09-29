@@ -45,7 +45,7 @@ public class TravleNoteManageImpl implements TravleNoteManage {
      * @return 返回一个布尔值
      */
     @Override
-    public boolean setTravleNote(TravleNote travleNote, int Status) {
+    public String setTravleNote(TravleNote travleNote, int Status) {
         return stra_noteDao.setTravleNote(travleNote, Status);
     }
 

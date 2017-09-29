@@ -119,7 +119,7 @@ public class ForumDaoImpl implements ForumDao {
      * @return
      */
     @Override
-    public boolean setForum(Forum forum) {
+    public String setForum(Forum forum) {
         boolean is_success = false;
         Connection conn = DBUtil.getConn();
         Statement statement = null;
@@ -136,7 +136,7 @@ public class ForumDaoImpl implements ForumDao {
             DBUtil.closeConn(conn, statement);
         }
 
-        return is_success;
+        return ForumID;
     }
 
     /**
